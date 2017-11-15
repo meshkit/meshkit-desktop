@@ -86,30 +86,30 @@ RUN cd /tmp && \
     rm -rf /tmp/moab
     
 # Install gmsh from source
-ARG GMSH_VERSION=3.0.5
-
-RUN cd /tmp && \
-    curl -L http://gmsh.info/src/gmsh-$GMSH_VERSION-source.tgz | bsdtar xf - && \
-    cd gmsh-$GMSH_VERSION-source && \
-    mkdir build && \
-    cd build && \
-    cmake \
-        -DCMAKE_INSTALL_PREFIX=/usr/local \
-        -DENABLE_BUILD_LIB=ON \
-        -DENABLE_BUILD_SHARED=ON \
-        -DENABLE_MPI=ON \
-        -DENABLE_OPENMP=ON \
-        -DENABLE_WRAP_PYTHON=ON \
-        -DPYTHON_EXECUTABLE=/usr/bin/python3.5 \
-        -DPYTHON_INCLUDE_DIR=/usr/include/python3.5 \
-        -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so \
-        -DENABLE_NUMPY=ON \
-        -DBLAS_LAPACK_LIBRARIES=/usr/lib/libopenblas.a \
-        -DCMAKE_BUILD_TYPE=Release \
-        .. && \
-    make -j2 && \
-    make install && \
-    rm -rf /tmp/*
+#ARG GMSH_VERSION=3.0.5
+#
+#RUN cd /tmp && \
+#    curl -L http://gmsh.info/src/gmsh-$GMSH_VERSION-source.tgz | bsdtar xf - && \
+#    cd gmsh-$GMSH_VERSION-source && \
+#    mkdir build && \
+#    cd build && \
+#    cmake \
+#        -DCMAKE_INSTALL_PREFIX=/usr/local \
+#        -DENABLE_BUILD_LIB=ON \
+#        -DENABLE_BUILD_SHARED=ON \
+#        -DENABLE_MPI=ON \
+#        -DENABLE_OPENMP=ON \
+#        -DENABLE_WRAP_PYTHON=ON \
+#        -DPYTHON_EXECUTABLE=/usr/bin/python3.5 \
+#        -DPYTHON_INCLUDE_DIR=/usr/include/python3.5 \
+#        -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so \
+#        -DENABLE_NUMPY=ON \
+#        -DBLAS_LAPACK_LIBRARIES=/usr/lib/libopenblas.a \
+#        -DCMAKE_BUILD_TYPE=Release \
+#        .. && \
+#    make -j2 && \
+#    make install && \
+#    rm -rf /tmp/*
 
 ADD image/home $DOCKER_HOME
 
