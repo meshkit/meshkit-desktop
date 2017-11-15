@@ -13,7 +13,7 @@ import sys
 import subprocess
 import time
 
-APP = "meshkit"
+APP = "meshdb"
 
 
 def parse_args(description):

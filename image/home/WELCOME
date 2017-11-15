@@ -1,11 +1,11 @@
-Welcome to the Docker image for Meshkit!
+Welcome to the Docker image for MeshDB!
 
-This image is built on top of fenics-desktop, with CGNS/PyCGNS, MOAB/pymoab 
-and gmsh preinstalled.
+This image is built on top of fenics-desktop, with CGNS/PyCGNS and MOAB/pymoab 
+preinstalled.
 
 Please save your code and data into the ~/shared or ~/project directories.
 The former maps to the current work directory on your computer. The latter
-maps to the Docker data volume named meshkit_project on your host.
+maps to the Docker data volume named meshdb_project on your host.
 
 To use git with ssh authentication, make sure the ssh key on your host
 computer is in bitbucket and github, and then run "ssh-add" in this terminal
