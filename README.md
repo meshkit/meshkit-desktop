@@ -1,9 +1,9 @@
-# Docker Image for Coupler
+# Docker Image for Meshkit
 This Docker image provides the Ubuntu 16.04 environment with X Windows for multiphysics coupling.
 
 This image runs the lightweight LXDE Windows Manager, and has FEniCS 17.1.0, Python 3.5.2 (with NumPy, SciPy, Pandas and Spyder), Jupyter Notebook, and g++-5.4 preinstalled. The X Windows will display in your web browser in full-screen mode. You can use this Docker image on 64-bit Linux, Mac or Windows.
 
-[![Build Status](https://travis-ci.org/unifem/coupler-desktop.svg?branch=master)](https://travis-ci.org/unifem/coupler-desktop) [![](https://images.microbadger.com/badges/image/unifem/coupler-desktop.svg)](https://microbadger.com/images/unifem/coupler-desktop)
+[![Build Status](https://travis-ci.org/unifem/meshkit-desktop.svg?branch=master)](https://travis-ci.org/unifem/meshkit-desktop) [![](https://images.microbadger.com/badges/image/unifem/meshkit-desktop.svg)](https://microbadger.com/images/unifem/meshkit-desktop)
 
 ## Preparation
 Before you start, you need to first install Python and Docker on your computer by following the steps below.
@@ -36,48 +36,48 @@ sudo adduser $USER docker
 Then, log out and log back in before you can use Docker.
 ## Running the Docker Image as Jupyter-Notebook Server
 To run the Docker image, first download the script
-[`coupler_jupyter.py`](https://raw.githubusercontent.com/unifem/coupler-desktop/master/coupler_jupyter.py)
+[`meshkit_jupyter.py`](https://raw.githubusercontent.com/unifem/meshkit-desktop/master/meshkit_jupyter.py)
 and save it to the working directory where you will store your notebooks, codes and data. You can download the script using command line: On Windows, start `Windows PowerShell`, use the `cd` command to change to the working directory where you will store your codes and data, and then run the following command:
 ```
-curl https://raw.githubusercontent.com/unifem/coupler-desktop/master/coupler_jupyer.py -outfile coupler_jupyer.py
+curl https://raw.githubusercontent.com/unifem/meshkit-desktop/master/meshkit_jupyer.py -outfile meshkit_jupyer.py
 ```
 On Linux or Mac, start a terminal, use the `cd` command to change to the working directory, and then run the following command:
 ```
-curl -s -O https://raw.githubusercontent.com/unifem/coupler-desktop/master/coupler_jupyer.py
+curl -s -O https://raw.githubusercontent.com/unifem/meshkit-desktop/master/meshkit_jupyer.py
 ```
 
 After downloading the script, you can start the Docker image using the command
 ```
-python coupler_jupyer.py -p
+python meshkit_jupyer.py -p
 ```
 This will download and run the Docker image and then launch your default web browser to show the Jupyter Notebook page. The `-p` option is optional, and it instructs the Python script to pull and update the image to the latest version.
 
 For additional command-line options, use the command
 ```
-python coupler_jupyter.py -h
+python meshkit_jupyter.py -h
 ```
 
 ### Running the Docker Image with Desktop Environment
-Besides using the Docker Image as a Jupyter Notebook server, you can also start it in an X-Windows desktop environment. Simply replace `coupler_jupyter.py` with `coupler_desktop.py` in the preceding commands. That is, on Windows use the following commands in the PowerShell:
+Besides using the Docker Image as a Jupyter Notebook server, you can also start it in an X-Windows desktop environment. Simply replace `meshkit_jupyter.py` with `meshkit_desktop.py` in the preceding commands. That is, on Windows use the following commands in the PowerShell:
 ```
-curl https://raw.githubusercontent.com/unifem/coupler-desktop/master/coupler_desktop.py -outfile coupler_desktop.py
-python coupler_desktop.py -p
+curl https://raw.githubusercontent.com/unifem/meshkit-desktop/master/meshkit_desktop.py -outfile meshkit_desktop.py
+python meshkit_desktop.py -p
 ```
 and on Linux and Mac use the following commands in a terminal:
 ```
-curl -s -O https://raw.githubusercontent.com/unifem/coupler-desktop/master/coupler_desktop.py
-python coupler_desktop.py -p
+curl -s -O https://raw.githubusercontent.com/unifem/meshkit-desktop/master/meshkit_desktop.py
+python meshkit_desktop.py -p
 ```
 It will automatically launch your default web browser to show the desktop. For a better experience, use [VNC Viewer](http://realvnc.com/download/viewer) to connect to the Docker image.
 
 ### Running the Docker Image Offline
 After you have download the Docker image using the `curl` and `python` commands above, you can run the image offline without internet connection using the following command:
 ```
-python coupler_jupyter.py
+python meshkit_jupyter.py
 ```
 or
 ```
-python coupler_desktop.py
+python meshkit_desktop.py
 ```
 in the directory where you ran the `curl` command above.
 
