@@ -1,5 +1,5 @@
-# Builds a Docker image with Ubuntu 16.04, Python 3, Jupyter Notebook,
-# CGNS/pyCGNS and MOAB/pyMOAB for multiphysics coupling with parallel suppport
+# Builds a Docker image with Ubuntu 17.10, Python 3, Jupyter Notebook,
+# CGNS/pyCGNS and MOAB/pyMOAB with parallel suppport for multiphysics coupling
 #
 # Authors:
 # Xiangmin Jiao <xmjiao@gmail.com>
