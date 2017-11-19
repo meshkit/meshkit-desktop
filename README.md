@@ -1,7 +1,8 @@
 # Docker Image for MeshDB
-This Docker image provides the Ubuntu 16.04 environment with X Windows for multiphysics coupling.
+This Docker image provides the Ubuntu environment with X Windows for multiphysics coupling.
 
-This image runs the lightweight LXDE Windows Manager, and has FEniCS 17.1.0, Python 3.5.2 (with NumPy, SciPy, Pandas and Spyder), Jupyter Notebook, and g++-5.4 preinstalled. The X Windows will display in your web browser in full-screen mode. You can use this Docker image on 64-bit Linux, Mac or Windows.
+This image runs the lightweight LXDE Windows Manager, and CGNS/pyCGNS and
+MOAB/pyMOAB preinstalled. The X Windows will display in your web browser in full-screen mode. You can use this Docker image on 64-bit Linux, Mac or Windows.
 
 [![Build Status](https://travis-ci.org/unifem/meshdb-desktop.svg?branch=master)](https://travis-ci.org/unifem/meshdb-desktop) [![](https://images.microbadger.com/badges/image/unifem/meshdb-desktop.svg)](https://microbadger.com/images/unifem/meshdb-desktop)
 
