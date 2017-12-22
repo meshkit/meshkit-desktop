@@ -28,6 +28,19 @@ RUN apt-get update && \
         nose && \
     rm -rf /var/lib/apt/lists/* /tmp/*
 
+ENV HDF5_VERSION=1.8.20
+
+# Build HDF5-1.8.x.
+# HDF5-1.10.x in Ubuntu 17.10 is incompatible with Overture
+RUN cd /tmp && \
+    curl -L https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-${HDF5_VERSION}.tar.gz | \
+        tar zx && \
+    cd hdf5-${HDF5_VERSION} && \
+    ./configure --enable-shared --prefix /usr/local/hdf5-${HDF5_VERSION} && \
+    make -j2 && make install && \
+    \
+    rm -rf /tmp/*
+
 # Install CGNS from source with parallel enabled
 RUN cd /tmp && \
     mkdir /usr/lib/hdf5 && \
