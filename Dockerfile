@@ -15,7 +15,11 @@ WORKDIR /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         automake autogen autoconf libtool \
+        libhdf5-100 \
+        libhdf5-dev \
+        libhdf5-openmpi-100 \
         libhdf5-openmpi-dev \
+        hdf5-tools \
         libnetcdf-dev netcdf-bin \
         libmetis5 libmetis-dev \
         \
@@ -23,14 +27,23 @@ RUN apt-get update && \
         libglu1-mesa-dev \
         libxmu-dev && \
     apt-get clean && \
+    \
     pip3 install -U \
         cython \
         nose && \
+    \
+    mkdir -p /usr/lib/hdf5-openmpi && \
+    ln -s -f /usr/include/hdf5/openmpi /usr/lib/hdf5-openmpi/include && \
+    ln -s -f /usr/lib/x86_64-linux-gnu/hdf5/openmpi /usr/lib/hdf5-openmpi/lib && \
+    \
+    mkdir -p /usr/lib/hdf5-serial && \
+    ln -s -f /usr/include/hdf5/serial /usr/lib/hdf5-serial/include && \
+    ln -s -f /usr/lib/x86_64-linux-gnu/hdf5/serial /usr/lib/hdf5-serial/lib && \
+    \
     rm -rf /var/lib/apt/lists/* /tmp/*
 
 ENV HDF5_VERSION=1.8.20
-
-# Build HDF5-1.8.x.
+# Also build HDF5-1.8.20 from source
 # HDF5-1.10.x in Ubuntu 17.10 is incompatible with Overture
 RUN cd /tmp && \
     curl -L https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-${HDF5_VERSION}.tar.gz | \
@@ -43,14 +56,11 @@ RUN cd /tmp && \
 
 # Install CGNS from source with parallel enabled
 RUN cd /tmp && \
-    mkdir /usr/lib/hdf5 && \
-    ln -s -f /usr/include/hdf5/openmpi /usr/lib/hdf5/include && \
-    ln -s -f /usr/lib/x86_64-linux-gnu/hdf5/openmpi /usr/lib/hdf5/lib  && \
     git clone --depth=1 -b master https://github.com/CGNS/CGNS.git && \
     cd CGNS/src && \
     export CC="mpicc" && \
     export LIBS="-Wl,--no-as-needed -ldl -lz -lsz -lpthread" && \
-    ./configure --enable-64bit --with-zlib --with-hdf5=/usr/lib/hdf5 \
+    ./configure --enable-64bit --with-zlib --with-hdf5=/usr/lib/hdf5-openmpi \
         --enable-cgnstools --enable-lfs --enable-shared && \
     sed -i 's/TKINCS =/TKINCS = -I\/usr\/include\/tcl/' cgnstools/make.defs && \
     make -j2 && make install && \
@@ -88,8 +98,8 @@ RUN cd /tmp && \
         --with-x \
         --with-cgns \
         --with-netcdf \
-        --with-hdf5=/usr/lib/hdf5 \
-        --with-hdf5-ldflags="-L/usr/lib/hdf5/lib" \
+        --with-hdf5=/usr/lib/hdf5-openmpi \
+        --with-hdf5-ldflags="-L/usr/lib/hdf5-openmpi/lib" \
         --enable-ahf=yes \
         --enable-tools=yes && \
     make -j2 && make install && \
