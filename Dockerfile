@@ -52,6 +52,10 @@ RUN cd /tmp && \
     ./configure --enable-shared --prefix /usr/local/hdf5-${HDF5_VERSION} && \
     make -j2 && make install && \
     \
+    make clean && \
+    ./configure --enable-shared --enable-parallel --prefix /usr/local/hdf5-${HDF5_VERSION}-openmpi && \
+    make -j2 && make install && \
+    \
     rm -rf /tmp/*
 
 # Install CGNS from source with parallel enabled
