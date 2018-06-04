@@ -61,7 +61,7 @@ RUN cd /tmp && \
     export CC="mpicc" && \
     export LIBS="-Wl,--no-as-needed -ldl -lz -lsz -lpthread" && \
     ./configure --enable-64bit --with-zlib --with-hdf5=/usr/lib/hdf5-openmpi \
-        --enable-cgnstools --enable-lfs --enable-shared && \
+        --enable-parallel --enable-cgnstools --enable-lfs --enable-shared && \
     sed -i 's/TKINCS =/TKINCS = -I\/usr\/include\/tcl/' cgnstools/make.defs && \
     make -j2 && make install && \
     rm -rf /tmp/CGNS
