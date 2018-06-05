@@ -7,7 +7,5 @@ before_script:
 
 script:
   - './ci-util/build-docker.sh &&
-     ./meshdb_desktop.py -d -n && docker stop $(docker ps -q) &&
-     ./meshdb_jupyter.py -d -n && docker stop $(docker ps -q) &&
      ./ci-util/trigger-via-api.sh'
 
