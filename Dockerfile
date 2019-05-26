@@ -20,7 +20,7 @@ RUN apt-get update && \
         libhdf5-openmpi-100 \
         libhdf5-openmpi-dev \
         hdf5-tools \
-        libnetcdf-dev netcdf-bin \
+        libnetcdf13 libnetcdf-dev \
         libmetis5 libmetis-dev \
         \
         tk-dev \
@@ -80,12 +80,11 @@ RUN cd /tmp && \
         --enable-shared=yes \
         --with-blas=-lopenblas \
         --with-lapack=-lopenblas \
-        --with-scotch=/usr/lib \
+        --with-scotch=/usr/lib/x86_64-linux-gnu \
         --with-metis=/usr/lib/x86_64-linux-gnu \
         --with-eigen3=/usr/include/eigen3 \
         --with-x \
         --with-cgns \
-        --with-netcdf \
         --with-hdf5=/usr/lib/hdf5-openmpi \
         --with-hdf5-ldflags="-L/usr/lib/hdf5-openmpi/lib" \
         --enable-ahf=yes \
